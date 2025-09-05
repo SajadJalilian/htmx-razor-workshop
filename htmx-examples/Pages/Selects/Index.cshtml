@@ -16,14 +16,14 @@
             </div>
             <div class="card-body">
 
-                <h4>Pick A Make/Model</h4>
+                <h4>Pick A Company then a Model</h4>
 
                 <div>
-                    <label class="control-label">Make</label>
-                    <select name="make" hx-get="/Selects/models" hx-target="#models" hx-indicator=".htmx-indicator">
-                        @foreach (var make in Model.ManufacturerMake)
+                    <label class="control-label">Company</label>
+                    <select name="company" hx-get="/Selects/models" hx-target="#models" hx-indicator=".htmx-indicator">
+                        @foreach (var company in Model.Companies)
                         {
-                            <option value="@make">@make</option>
+                            <option value="@company">@company</option>
                         }
                     </select>
                 </div>
@@ -31,7 +31,7 @@
                     <label class="control-label">Model</label>
 
                     <select id="models" name="model">
-                        <partial name="_modelSelector" model="@Model.ManufacturerModels"/>
+                        <partial name="_modelSelector" model="@Model.CarModels"/>
                     </select>
                 </div>
 

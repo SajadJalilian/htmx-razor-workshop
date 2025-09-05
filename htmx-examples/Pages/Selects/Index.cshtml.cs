@@ -9,27 +9,29 @@ public class IndexModel : PageModel
 
     static IndexModel()
     {
-        IndexModel.MakeModel = new Dictionary<string, List<string>>();
-        MakeModel.Add("Audi", new() { "A1", "A4", "A6" });
-        MakeModel.Add("Toyota", new() { "Landcruiser", "Tacoma", "Yaris" });
-        MakeModel.Add("BMW", new() { "325i", "325ix", "X5" });
+        MakeModel = new Dictionary<string, List<string>>
+        {
+            { "Audi", new() { "A1", "A4", "A6" } },
+            { "Toyota", new() { "Landcruiser", "Tacoma", "Yaris" } },
+            { "BMW", new() { "325i", "325ix", "X5" } }
+        };
     }
 
     public void OnGet()
     {
-        ManufacturerMake = MakeModel.Keys.ToList();
-        Make = ManufacturerMake.First();
-        ManufacturerModels = MakeModel[Make];
+        Companies = MakeModel.Keys.ToList();
+        Company = Companies.First();
+        CarModels = MakeModel[Company];
     }
 
-    public List<String> ManufacturerMake { get; set; }
-    public List<String> ManufacturerModels { get; set; }
-    [FromQuery(Name = "make")] public string Make { get; set; }
+    public List<string> Companies { get; set; }
+    public List<string> CarModels { get; set; }
+    [FromQuery(Name = "company")] public string Company { get; set; }
 
     public PartialViewResult OnGetModels()
     {
-        ManufacturerModels = MakeModel[Make];
+        CarModels = MakeModel[Company];
 
-        return Partial("_modelSelector", ManufacturerModels);
+        return Partial("_modelSelector", CarModels);
     }
 }
