@@ -37,6 +37,7 @@
                     </tr>
                     </thead>
                     <tbody id="search-results">
+                        @await Html.PartialAsync("_searchResult", Model.Countries)
                     </tbody>
                 </table>
 

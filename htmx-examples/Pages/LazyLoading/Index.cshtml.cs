@@ -13,8 +13,9 @@ public class IndexModel : PageModel
     {
     }
 
-    public IActionResult OnGetGraph()
+    public async Task<IActionResult> OnGetGraph()
     {
+        await Task.Delay(2000);
         return Content($"<img alt=\"Tokyo Climate\" src=\"https://htmx.org/img/tokyo.png\">");
     }
 }
